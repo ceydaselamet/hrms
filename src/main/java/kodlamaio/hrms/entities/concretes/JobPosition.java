@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,4 +22,8 @@ public class JobPosition {
 
     @Column(name = "jobPosition", nullable = false, unique = true)
     private String jobPositionName;
+
+    @OneToMany(mappedBy = "jobPosition", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<JobAdvertisement> jobAdvertisements;
+
 }

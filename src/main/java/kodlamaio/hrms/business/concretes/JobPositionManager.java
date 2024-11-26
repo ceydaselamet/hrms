@@ -4,10 +4,12 @@ import kodlamaio.hrms.business.abstracts.JobPositionService;
 import kodlamaio.hrms.core.utilities.business.BusinessRules;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
+import kodlamaio.hrms.entities.concretes.City;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class JobPositionManager implements JobPositionService {
@@ -20,6 +22,11 @@ public class JobPositionManager implements JobPositionService {
     @Override
     public DataResult<List<JobPosition>> getAll() {
         return new SuccessDataResult<List<JobPosition>>(jobPositionDao.findAll());
+    }
+
+    @Override
+    public DataResult<JobPosition> getById(UUID id) {
+        return new SuccessDataResult<JobPosition>(jobPositionDao.findById(id).orElse(null));
     }
 
     @Override
